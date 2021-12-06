@@ -1,4 +1,4 @@
-import axios from '../../index'
+import axios from '../../src'
 
 axios({
   method: 'get',
@@ -59,4 +59,26 @@ axios({
   params: {
     bar: 'baz'
   }
+})
+
+/**
+ * POST - 普通 json
+ */
+axios({
+  method: 'post',
+  url: '/base/post',
+  data: {
+    a: 1,
+    b: 2
+  }
+})
+
+/**
+ * POST - buffer 处理
+ */
+const arr = new Int32Array([21, 22])
+axios({
+  method: 'post',
+  url: '/base/buffer',
+  data: arr
 })
