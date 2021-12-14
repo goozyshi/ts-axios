@@ -38,7 +38,6 @@ router.get('/base/get', (req, res) => {
 })
 
 router.post('/base/post', (req, res) => {
-  // header 未处理，需设置contentType为json
   res.json(req.body)
 })
 

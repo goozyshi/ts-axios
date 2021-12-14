@@ -12,3 +12,7 @@ export const isDate = (val: any): val is Date => {
 export const isObject = (val: any): val is Object => {
   return toString.call(val) === '[object Object]'
 }
+
+export const isString = (val: any): val is string => {
+  return toString.call(val) === '[object String]'
+}

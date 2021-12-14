@@ -21,3 +21,26 @@ export const processHeaders = (headers: any, data: any): any => {
   }
   return headers
 }
+
+/**
+ *
+ * 'connection: keep-alive\r\ncontent-length: 2' =>
+ *  connection: keep-alive
+ *  content-length: 2
+ */
+export const parseHeaders = (headers: string): any => {
+  let headerObj = Object.create(null)
+  if (!headers) {
+    return headerObj
+  }
+  headers.split('\r\n').map(keyValueStr => {
+    let [key, value] = keyValueStr.split(':')
+    key = key.trim().toLowerCase()
+    if (!key) {
+      return
+    }
+    value = value?.trim()
+    headerObj[key] = value
+  })
+  return headerObj
+}
