@@ -7,12 +7,12 @@ export const transformRequest = (data: any): any => {
   return data
 }
 
-export function transformResponse(data: any): any {
+export const transformResponse = (data: any): any => {
   if (isString(data)) {
     try {
       data = JSON.parse(data)
     } catch (e) {
-      // do nothing
+      console.log(`_Error: ${e}`)
     }
   }
   return data
