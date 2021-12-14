@@ -1,8 +1,16 @@
 import { AxiosRequestConfig } from './types'
 
 export default function xhr(config: AxiosRequestConfig): void {
-  const { data = null, url, method = 'get' } = config
+  const { data = null, url, method = 'get', headers = {} } = config
   const request = new XMLHttpRequest()
   request.open(method.toUpperCase(), url, true)
+  Object.keys(headers).forEach(name => {
+    // data 为空的时候，请求 header 默认配置 Content-Type 是没有意义
+    if (data === null && name.toLowerCase() === 'content-type') {
+      Reflect.deleteProperty(headers, name)
+    } else {
+      request.setRequestHeader(name, headers[name])
+    }
+  })
   request.send(data)
 }
