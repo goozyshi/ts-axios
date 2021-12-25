@@ -15,7 +15,7 @@ export type Method =
   | 'patch'
   | 'PATCH'
 
-// 导出TS配置
+// 请求接口
 export interface AxiosRequestConfig {
   url: string
   method?: Method
@@ -23,8 +23,10 @@ export interface AxiosRequestConfig {
   data?: any
   params?: any
   responseType?: XMLHttpRequestResponseType
+  timeout?: number
 }
 
+// 响应接口
 export interface AxiosResponse {
   status: number
   statusText: string
@@ -35,3 +37,12 @@ export interface AxiosResponse {
 }
 
 export interface AxiosPromise extends Promise<AxiosResponse> {}
+
+// 错误接口
+export interface AxiosError extends Error {
+  config: AxiosRequestConfig
+  code?: string
+  request?: any
+  response?: AxiosResponse
+  isAxiosError: boolean
+}
